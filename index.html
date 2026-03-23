@@ -69,7 +69,7 @@ a:hover { text-decoration: underline; }
 .hero-sub { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 40px; line-height: 1.7; position: relative; }
 .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
 
-/* COW DIAGRAM */
+/* FORK DIAGRAM */
 .cow-diagram {
   max-width: 700px; margin: 80px auto 0; position: relative;
   background: #111116; border: 1px solid var(--border); border-radius: var(--radius);
@@ -217,7 +217,7 @@ section { padding: 100px 0; }
       <a href="https://github.com/unixshells/army" class="btn btn-outline">Army on GitHub</a>
     </div>
 
-    <!-- ANIMATED COW FORK DIAGRAM -->
+    <!-- ANIMATED FORK DIAGRAM -->
     <div class="cow-diagram">
       <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
         <!-- Template VM -->
@@ -283,7 +283,7 @@ section { padding: 100px 0; }
           <svg viewBox="0 0 24 24" fill="none" stroke="#5b5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div class="stat-value">&lt;20ms</div>
-        <div class="stat-label">CoW fork time</div>
+        <div class="stat-label">Fork time</div>
       </div>
       <div class="stat">
         <div class="stat-icon">
@@ -368,8 +368,8 @@ section { padding: 100px 0; }
         <tr><th></th><th>Clone</th><th>Firecracker</th><th>Cloud Hypervisor</th><th>QEMU</th></tr>
       </thead>
       <tbody>
-        <tr><td>Code size</td><td class="highlight">19K Rust</td><td>~50K Rust</td><td>~70K Rust</td><td>~2M+ C</td></tr>
-        <tr><td>Fork/restore</td><td class="highlight">&lt;20ms (CoW)</td><td>~5-10ms</td><td>stop+resume</td><td>stop+resume</td></tr>
+        <tr><td>Code size</td><td class="highlight">25K Rust</td><td>~50K Rust</td><td>~70K Rust</td><td>~2M+ C</td></tr>
+        <tr><td>Fork/restore</td><td class="highlight">&lt;20ms</td><td>~5-10ms</td><td>stop+resume</td><td>stop+resume</td></tr>
         <tr><td>Cold boot (distro kernel)</td><td class="highlight">2,217ms</td><td>~2-3s</td><td>~2s</td><td>5-20s</td></tr>
         <tr><td>Live migration downtime</td><td class="highlight">1ms</td><td>none</td><td>unpublished</td><td>50-300ms</td></tr>
         <tr><td>3 forked VMs RSS</td><td class="highlight">13MB</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
@@ -477,7 +477,7 @@ army vm exec vm-3a8f -- uname -a
   <div class="container">
     <div class="section-label">At scale</div>
     <h2 class="section-heading">Why infrastructure companies want this.</h2>
-    <p class="section-sub">If you run VMs for customers, CoW sharing changes your unit economics. The more similar your workloads, the bigger the savings.</p>
+    <p class="section-sub">If you run VMs for customers, memory sharing changes your unit economics. The more similar your workloads, the bigger the savings.</p>
 
     <div class="features">
       <div class="feature">
@@ -503,12 +503,12 @@ army vm exec vm-3a8f -- uname -a
       <div class="feature">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
         <h3>Shared Hosting (Modern)</h3>
-        <p>The original shared hosting model died because chroot isolation wasn't secure. Clone brings it back with KVM hardware isolation and CoW memory sharing. <strong>The density of shared hosting with the security of dedicated VMs.</strong></p>
+        <p>The original shared hosting model died because chroot isolation wasn't secure. Clone brings it back with KVM hardware isolation and automatic memory sharing. <strong>The density of shared hosting with the security of dedicated VMs.</strong></p>
       </div>
       <div class="feature">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg></div>
         <h3>AI Inference</h3>
-        <p>Load a model into a template VM with GPU passthrough. Fork instances that share the model weights in memory via CoW. <strong>Model weights loaded once, served many.</strong></p>
+        <p>Load a model into a template VM with GPU passthrough. Fork instances that share the model weights in memory automatically. <strong>Model weights loaded once, served many.</strong></p>
       </div>
     </div>
 
@@ -516,7 +516,7 @@ army vm exec vm-3a8f -- uname -a
       <h3>The math</h3>
       <p>
         Traditional VMs: 1,000 instances &times; 1GB each = <strong>1TB RAM</strong> needed.<br>
-        Clone CoW: 1,000 instances &times; ~50MB private pages + 600MB shared base = <strong>~51GB RAM</strong>.<br>
+        Clone: 1,000 instances &times; ~50MB private pages + 600MB shared base = <strong>~51GB RAM</strong>.<br>
         That's <strong>20x less infrastructure</strong> for the same workload. At cloud prices, that's the difference between $50,000/mo and $2,500/mo in compute.
       </p>
       <p style="margin-top: 16px;">
